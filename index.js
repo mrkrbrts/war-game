@@ -1,3 +1,5 @@
+const cardsDiv = document.getElementById("cards-wrapper")
+
 //assign variable, leave it undefined for fetch request
 let deckId
 
@@ -24,10 +26,19 @@ function drawCards() {
         fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
             .then(res => res.json())
             .then (data => {
-                console.log(data.cards)
+                let cardUrlArray = data.cards
+                displayCards(cardUrlArray)
             })
 
     } else {
         console.log("No deck found")
+    }
+}
+
+function displayCards(array) {
+    for (let i=0; i < array.length; i++) {
+        cardsDiv.innerHTML += `<img src="${array[i].image}" alt="${array[i].value} of ${array[i].suit}">`
+
+        console.log(`${array[i].value} of ${array[i].suit}`)
     }
 }
