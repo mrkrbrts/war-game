@@ -1,3 +1,5 @@
+import {changeGradient} from "./background.js";
+
 const cardsDiv = document.getElementById("cards-wrapper")
 
 //assign variable, leave it undefined for fetch request
@@ -19,26 +21,45 @@ function getNewDeck() {
             deckId = data.deck_id
             console.log(deckId)
     })
+
+    if (drawCardsBtn.classList.contains("inactive")) {
+        drawCardsBtn.classList.remove("inactive")
+    } else {
+        deleteCards()
+    }
+
+
 }
 
 function drawCards() {
-    if (deckId) {
-        fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
-            .then(res => res.json())
-            .then (data => {
-                let cardUrlArray = data.cards
-                displayCards(cardUrlArray)
-            })
-
-    } else {
-        console.log("No deck found")
+    if (!drawCardsBtn.classList.contains("inactive"))
+    {
+        if (deckId) {
+            fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
+                .then(res => res.json())
+                .then (data => {
+                    let cardUrlArray = data.cards
+                    displayCards(cardUrlArray)
+                    changeGradient()
+                })
+    
+        } else {
+            console.log("No deck found")
+        }
     }
+
 }
 
 function displayCards(array) {
     for (let i=0; i < array.length; i++) {
         cardsDiv.innerHTML += `<img src="${array[i].image}" alt="${array[i].value} of ${array[i].suit}">`
-
         console.log(`${array[i].value} of ${array[i].suit}`)
     }
 }
+
+function deleteCards() {
+    cardsDiv.innerHTML = null
+}
+// random background gradient upon loading page
+changeGradient()
+

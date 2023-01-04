@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="index.css">
     </head>
     
     <body>
-        <button id="new-deck-btn">New deck, please!</button>
-
-        <button id="draw-cards-btn">Draw cards</button>
-
+        <button id="new-deck-btn">New deck</button>
         <div id="cards-wrapper"></div>
+        <div id="spacer"></div>
+        <button id="draw-cards-btn" class="inactive">Draw cards</button>
+
+
     
-        <script src="index.js"></script>
+        <script type="module" src="./index.js"></script>
     </body>
 </html>
