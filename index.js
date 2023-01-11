@@ -51,10 +51,14 @@ function drawCards() {
 }
 
 function displayCards(array) {
-    for (let i=0; i < array.length; i++) {
-        cardsDiv.innerHTML += `<img src="${array[i].image}" alt="${array[i].value} of ${array[i].suit}">`
-        console.log(`${array[i].value} of ${array[i].suit}`)
-    }
+    document.getElementById("card-slot-1").innerHTML = `<img src="${array[0].image}" alt="${array[0].value} of ${array[0].suit}">`
+    document.getElementById("card-slot-2").innerHTML = `<img src="${array[1].image}" alt="${array[1].value} of ${array[1].suit}">`
+
+    // for (let i=0; i < array.length; i++) {
+        
+    //     cardsDiv.innerHTML += `<img src="${array[i].image}" alt="${array[i].value} of ${array[i].suit}">`
+    //     console.log(`${array[i].value} of ${array[i].suit}`)
+    // }
 }
 
 function deleteCards() {
